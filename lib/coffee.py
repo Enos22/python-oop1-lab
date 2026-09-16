@@ -1,24 +1,24 @@
 
 class Coffee:
-    def __init__(self):
-        # Prompt customer for input
-        size_input = input("Enter the size of the coffee (small, medium, large): ")
-        price_input = float(input("Enter the price of the coffee: "))
-
+    def __init__(self, size, price):
+        # Initialize with provided size and price
         self._size = None
         self._price = None
 
-        self.set_size(size_input)
-        self.set_price(price_input)
+        # use the property setters to validate
+        self.size = size
+        self.price = price
 
     def get_size(self):
         return self._size
 
     def set_size(self, value):
-        if value in ['small', 'medium', 'large']:
+        # Accept only these specific values (capitalized) as per tests
+        if value in ['Small', 'Medium', 'Large']:
             self._size = value
         else:
-            print("Invalid size. Please choose 'small', 'medium', or 'large'.")
+            # Match expected error message from tests
+            print("size must be Small, Medium, or Large")
 
     size = property(get_size, set_size)
 
@@ -34,7 +34,8 @@ class Coffee:
     price = property(get_price, set_price)
 
     def tip(self):
-        print("This coffee is great, here's a tip!")
+        # Message must match tests (note the curly apostrophe)
+        print("This coffee is great, here’s a tip!")
         self._price = self._price + 1
 
 
